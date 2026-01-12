@@ -10,19 +10,19 @@ This project automates the critical "Day 0" identity lifecycle process for Privi
 
 The automation follows a strict "Trust-but-Verify" logic flow, connecting the "Core" (Directory Data) to the "Penthouse" (Privileged Vault).
 
-Authentication (The Handshake):
+**Authentication (The Handshake):**
 
 Initiates a secure POST request to /auth/CyberArk/Logon.
 
 Retrieves a temporal Session Token (wristband) to validate subsequent requests without exposing credentials repeatedly.
 
-The Loop (The Engine):
+**The Loop (The Engine):**
 
 Parses a structured CSV inventory (onboard.csv).
 
 Iterates through each identity row, constructing a dynamic JSON payload.
 
-The Payload (The Injection):
+**The Payload (The Injection):**
 
 Fires a POST request to /PasswordVault/API/Accounts for each user.
 
@@ -32,11 +32,11 @@ Result: Instant object creation in the Vault with correct Safe, Platform, and Ad
 
 The script relies on a standardized CSV input file. This decouples the code from the data, allowing non-technical teams (HR/Managers) to provide lists without touching the PowerShell logic.
 
-onboard.csv Format: username,address,safe,platform Admin_John,192.168.1.50,Tier1_Operations,UnixSSH Admin_Sarah,192.168.1.51,Tier1_Operations,WinServerLocal
-
+onboard.csv Format: 
 📸 Evidence 1: The Input Source
 
 Figure 1: The raw intake file prepared for ingestion.
+
 <img width="462" height="132" alt="Screenshot 2026-01-12 140116" src="https://github.com/user-attachments/assets/3f366ec2-8294-4530-ac2f-57854cb63106" />
 
 
