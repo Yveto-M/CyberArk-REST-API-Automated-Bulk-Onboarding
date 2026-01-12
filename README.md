@@ -39,6 +39,8 @@ Admin_Sarah,192.168.1.51,Tier1_Operations,WinServerLocal
 The script provides real-time console feedback, distinguishing between Success (Green) and API Failures (Yellow/Red) (e.g., "Account already exists").
 
 Step 1: Secure Authentication Figure 2: Secure credential handling using PowerShell Get-Credential.
+<img width="668" height="394" alt="Screenshot 2026-01-12 135531" src="https://github.com/user-attachments/assets/bc0a39a3-c5a2-4177-9d9c-4411988c6643" />
+
 
 Step 2: JSON Payload Delivery Figure 3: Successful API Handshake and iterative object creation. Note the platformID and safeName assignment.
 
