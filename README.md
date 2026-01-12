@@ -3,7 +3,7 @@
 ### **Executive Summary**
 This project automates the critical "Day 0" identity lifecycle process for Privileged Access Management (PAM). By leveraging the CyberArk PAS REST API and PowerShell, this tool replaces manual, error-prone GUI data entry with a scalable, code-driven intake pipeline.
 
-**The Metric:** Reduced onboarding time for 50+ privileged identities from **3+ hours** (Manual) to **<30 seconds** (Automated).
+> **The Metric:** Reduced onboarding time for 50+ privileged identities from **3+ hours** (Manual) to **<30 seconds** (Automated).
 
 ---
 
@@ -13,9 +13,11 @@ The automation follows a strict "Trust-but-Verify" logic flow, connecting the "C
 1.  **Authentication (The Handshake):**
     * Initiates a secure POST request to `/auth/CyberArk/Logon`.
     * Retrieves a temporal **Session Token** (wristband) to validate subsequent requests without exposing credentials repeatedly.
+
 2.  **The Loop (The Engine):**
     * Parses a structured CSV inventory (`onboard.csv`).
     * Iterates through each identity row, constructing a dynamic JSON payload.
+
 3.  **The Payload (The Injection):**
     * Fires a `POST` request to `/PasswordVault/API/Accounts` for each user.
     * **Result:** Instant object creation in the Vault with correct Safe, Platform, and Address assignments.
@@ -30,17 +32,16 @@ The script relies on a standardized CSV input file. This decouples the *code* fr
 username,address,safe,platform
 Admin_John,192.168.1.50,Tier1_Operations,UnixSSH
 Admin_Sarah,192.168.1.51,Tier1_Operations,WinServerLocal
-📸 Evidence 1: The Input Source Figure 1: The raw intake file prepared for ingestion.
+📸 Evidence 1: The Input Source
+Figure 1: The raw intake file prepared for ingestion.
 
-<img width="462" height="132" alt="Screenshot 2026-01-12 140116" src="https://github.com/user-attachments/assets/17e583d9-ca08-4bbc-ae64-2a5ddd7ac5cb" />
+ <img width="462" height="132" alt="Screenshot 2026-01-12 140116" src="https://github.com/user-attachments/assets/d1c35513-45de-4f23-bc53-3c61bdc7cbad" /> 
 
 
 💻 Execution Output
 The script provides real-time console feedback, distinguishing between Success (Green) and API Failures (Yellow/Red) (e.g., "Account already exists").
 
 Step 1: Secure Authentication Figure 2: Secure credential handling using PowerShell Get-Credential.
-<img width="668" height="394" alt="Screenshot 2026-01-12 135531" src="https://github.com/user-attachments/assets/bc0a39a3-c5a2-4177-9d9c-4411988c6643" />
-
 
 Step 2: JSON Payload Delivery Figure 3: Successful API Handshake and iterative object creation. Note the platformID and safeName assignment.
 
